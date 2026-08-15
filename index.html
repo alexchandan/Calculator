@@ -3,48 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>Scientific Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator">
-        <input type="text" id="calculator-display" placeholder="0" disabled>
+        <div class="brand">
+            <span class="brand-name">ClassWiz</span>
+            <span class="brand-model">fx-991EX style</span>
+        </div>
 
-    <div>
-        <button class="btn ac" data-action="clear">AC</button>
-        <button class="btn del" data-action="delete">Del</button>
-        <button class="btn operator" data-action="percentage" disabled>&percnt;</button>
-        <button class="btn operator" data-action="divide">&divide;</button>
+        <div class="screen">
+            <div class="status-bar">
+                <span class="indicator" id="indicator-shift">SHIFT</span>
+                <span class="indicator" id="indicator-alpha">ALPHA</span>
+                <span class="indicator" id="indicator-memory">M</span>
+                <span class="indicator active" id="indicator-angle">DEG</span>
+            </div>
+            <div class="entry" id="entry">0</div>
+            <div class="result" id="result"></div>
+        </div>
+
+        <div class="mode-row">
+            <button class="btn function" data-action="shift">SHIFT</button>
+            <button class="btn function" data-action="alpha">ALPHA</button>
+            <button class="btn function" data-action="angle-mode">DEG<span class="second">RAD</span></button>
+            <button class="btn function" data-action="history">HIST</button>
+            <button class="btn function" data-action="left">&#9664;</button>
+            <button class="btn function" data-action="right">&#9654;</button>
+        </div>
+
+        <div class="keypad">
+            <button class="btn function" data-insert="√(" data-shift-insert="∛(">&radic;&#9744;<span class="second">&#8731;&#9744;</span></button>
+            <button class="btn function" data-insert="²" data-shift-insert="^(">x&sup2;<span class="second">x&#9744;</span></button>
+            <button class="btn function" data-insert="³" data-shift-insert="⁻¹">x&sup3;<span class="second">x&#8315;&sup1;</span></button>
+            <button class="btn function" data-insert="log(" data-shift-insert="10^(">log<span class="second">10&#9744;</span></button>
+            <button class="btn function" data-insert="ln(" data-shift-insert="e^(">ln<span class="second">e&#9744;</span></button>
+            <button class="btn function" data-insert="logb(" data-shift-insert="Abs(">log<sub>a</sub>b<span class="second">Abs</span></button>
+
+            <button class="btn function" data-insert="sin(" data-shift-insert="sin⁻¹(">sin<span class="second">sin&#8315;&sup1;</span></button>
+            <button class="btn function" data-insert="cos(" data-shift-insert="cos⁻¹(">cos<span class="second">cos&#8315;&sup1;</span></button>
+            <button class="btn function" data-insert="tan(" data-shift-insert="tan⁻¹(">tan<span class="second">tan&#8315;&sup1;</span></button>
+            <button class="btn function" data-insert="sinh(" data-shift-insert="sinh⁻¹(">sinh<span class="second">sinh&#8315;&sup1;</span></button>
+            <button class="btn function" data-insert="cosh(" data-shift-insert="cosh⁻¹(">cosh<span class="second">cosh&#8315;&sup1;</span></button>
+            <button class="btn function" data-insert="tanh(" data-shift-insert="tanh⁻¹(">tanh<span class="second">tanh&#8315;&sup1;</span></button>
+
+            <button class="btn function" data-insert="(">(</button>
+            <button class="btn function" data-insert=")">)</button>
+            <button class="btn function" data-insert=",">,</button>
+            <button class="btn function" data-insert="!" data-shift-insert="Ran#">x!<span class="second">Ran#</span></button>
+            <button class="btn function" data-insert="nCr" data-shift-insert="nPr">nCr<span class="second">nPr</span></button>
+            <button class="btn function" data-insert="mod" data-shift-insert="RanInt(">mod<span class="second">RanInt</span></button>
+
+            <button class="btn memory" data-action="memory-store">STO</button>
+            <button class="btn memory" data-action="memory-recall">RCL</button>
+            <button class="btn memory" data-action="memory-add">M+</button>
+            <button class="btn memory" data-action="memory-subtract">M&minus;</button>
+            <button class="btn memory" data-action="memory-clear">MC</button>
+            <button class="btn function" data-insert="Ans">Ans</button>
+
+            <button class="btn clear" data-action="clear">AC</button>
+            <button class="btn delete" data-action="delete">DEL</button>
+            <button class="btn function" data-insert="π" data-shift-insert="e">&pi;<span class="second">e</span></button>
+            <button class="btn function" data-insert="×10^" data-shift-insert="%">&times;10&#9744;<span class="second">%</span></button>
+            <button class="btn operator" data-insert="÷">&divide;</button>
+            <button class="btn operator" data-insert="×">&times;</button>
+
+            <button class="btn digit" data-insert="7">7</button>
+            <button class="btn digit" data-insert="8">8</button>
+            <button class="btn digit" data-insert="9">9</button>
+            <button class="btn digit" data-insert="4">4</button>
+            <button class="btn digit" data-insert="5">5</button>
+            <button class="btn digit" data-insert="6">6</button>
+
+            <button class="btn digit" data-insert="1">1</button>
+            <button class="btn digit" data-insert="2">2</button>
+            <button class="btn digit" data-insert="3">3</button>
+            <button class="btn digit" data-insert="0">0</button>
+            <button class="btn digit" data-insert=".">.</button>
+            <button class="btn operator" data-insert="-">&minus;</button>
+
+            <button class="btn variable" data-insert="A">A</button>
+            <button class="btn variable" data-insert="B">B</button>
+            <button class="btn variable" data-insert="X">X</button>
+            <button class="btn variable" data-insert="Y">Y</button>
+            <button class="btn operator" data-insert="+">+</button>
+            <button class="btn equals" data-action="calculate">=</button>
+        </div>
+
+        <div class="history hidden" id="history">
+            <div class="history-title">History</div>
+            <ul class="history-list" id="history-list"></ul>
+        </div>
     </div>
-    
-    <div>
-        <button class="btn">7</button>
-        <button class="btn">8</button>
-        <button class="btn">9</button>
-        <button class="btn operator" data-action="multiply">&times;</button>
-    </div>
-    
-    <div>
-        <button class="btn">4</button>
-        <button class="btn">5</button>
-        <button class="btn">6</button>
-        <button class="btn operator" data-action="subtract">-</button>
-    </div>
-    
-    <div>
-        <button class="btn">1</button>
-        <button class="btn">2</button>
-        <button class="btn">3</button>
-        <button class="btn operator" data-action="add">+</button>
-    </div>
-    <div>
-        <button class="btn">0</button>
-        <button class="btn">00</button>
-        <button class="btn" data-action="decimal">.</button>
-        <button class="btn operator" data-action="calculate">=</button>
-    </div>
-</div>
-    
+
+    <script src="parser.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
